@@ -1,5 +1,8 @@
 package com.phoebus.data.model;
 
+import com.sun.javafx.collections.ImmutableObservableList;
+import org.eclipse.collections.impl.factory.Lists;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +30,7 @@ public class Event implements Serializable {
     @Id
     @Column(name = "event_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "event_name")
     private String name;
@@ -41,7 +45,7 @@ public class Event implements Serializable {
 
     public Event() {}
 
-    public Event(final int id, final String name, final EventSubcat subcat, final List<Market> markets) {
+    public Event(final Integer id, final String name, final EventSubcat subcat, final List<Market> markets) {
         this.id = id;
         this.name = name;
         this.subcat = subcat;
@@ -49,11 +53,11 @@ public class Event implements Serializable {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -81,6 +85,10 @@ public class Event implements Serializable {
         this.markets = markets;
     }
 
+
+    void addMarket(Market market) {
+        markets = Lists.immutable.ofAll(markets).newWith(market).castToList();
+    }
 
     @Override
     public String toString() {

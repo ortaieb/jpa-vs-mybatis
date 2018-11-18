@@ -2,12 +2,16 @@ package com.phoebus.data.model;
 
 import org.junit.Test;
 
-import java.util.List;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
+import static org.junit.Assert.assertThat;
 
 /**
  */
-public class MarketTest extends AbstractTest {
+public class MarketTest
+//        extends AbstractTest
+{
 
+    /*@Ignore
     @Test
     public void insertToMarket() {
         beginTransaction();
@@ -28,11 +32,23 @@ public class MarketTest extends AbstractTest {
         System.out.println("market2 after  : " + market2);
         commitTransaction();
 
-        beginTransaction();
+//        beginTransaction();
+//
+//        long n = em.createQuery("SELECT m FROM Market m", Market.class).getResultStream().count();
+//
+//        assertThat(n, is(2L));
+//
+//        commitTransaction();
+    }*/
 
-        List<Market> result = QueryDatabaseTools.tableContent("market", Market.class);
-        System.out.println("Results : " + result.toString());
+    @Test
+    public void create_market_with_explicit_event_add_market_to_event() {
+        Event event = new Event(100, "event", null, null);
 
-        commitTransaction();
+        Market market = new Market(null, "market-1", event);
+
+        assertThat(event.getMarkets(), hasItem(market));
+
     }
+
 }

@@ -21,7 +21,7 @@ public class EventSubcat implements Serializable {
     @Id
     @Column(name = "event_subcat_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Basic(optional = false)
     @Column(name = "event_subcat_name")
@@ -30,17 +30,17 @@ public class EventSubcat implements Serializable {
 
     public EventSubcat() {}
 
-    public EventSubcat(final int id, final String name) {
+    public EventSubcat(final Integer id, final String name) {
         this.id = id;
         this.name = name;
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 

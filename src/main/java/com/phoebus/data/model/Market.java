@@ -22,7 +22,7 @@ public class Market implements Serializable {
     @Id
     @Column(name = "market_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "market_name")
     private String name;
@@ -39,11 +39,19 @@ public class Market implements Serializable {
         this.event = event;
     }
 
-    public int getId() {
+    public Market(Integer id, String name, Event event) {
+        this.id = id;
+        this.name = name;
+        this.event = event;
+        if( event != null )
+            event.addMarket(this);
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
