@@ -24,6 +24,7 @@ hs_err_pid*
 
 # IntelliJ idea
 *.iml
+.idea/
 .idea/compiler.xml
 .idea/vcs.xml
 
